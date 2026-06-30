@@ -1,5 +1,6 @@
 /* ================================================
-   SECRET CHAT — CHAT ROOM CSS
+   SECRET CHAT — CHAT ROOM CSS (Light Theme)
+   ใช้ตัวแปรสีชุดเดียวกับ main.css (อ้างอิงจากธีมสว่าง)
    ================================================ */
 
 body.chat-page {
@@ -7,6 +8,9 @@ body.chat-page {
   flex-direction: column;
   height: 100dvh;          /* dynamic viewport height — handles mobile browser chrome */
   overflow: hidden;
+  padding: 0;
+  background: var(--bg-page);
+  align-items: stretch;
 }
 
 /* ------------------------------------------------ CHAT HEADER */
@@ -14,29 +18,28 @@ body.chat-page {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(13,14,21,.95);
-  backdrop-filter: blur(8px);
+  padding: 14px 16px;
+  background: var(--grad-header);
   flex-shrink: 0;
   gap: 12px;
   z-index: 10;
 }
 
 .back-btn {
-  background: none;
-  border: 1.5px solid var(--border);
+  background: rgba(255,255,255,.18);
+  border: 1.5px solid rgba(255,255,255,.4);
   border-radius: var(--radius-sm);
-  color: var(--text-dim);
+  color: #fff;
   font-family: var(--font-th);
   font-size: 13px;
+  font-weight: 600;
   padding: 6px 12px;
   cursor: pointer;
   white-space: nowrap;
   transition: all var(--transition);
   flex-shrink: 0;
 }
-.back-btn:hover { border-color: var(--pink); color: var(--text); }
+.back-btn:hover { background: rgba(255,255,255,.3); }
 
 .chat-header-info {
   flex: 1;
@@ -47,17 +50,20 @@ body.chat-page {
   min-width: 0;
 }
 .partner-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #fff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 180px;
+  text-shadow: 0 1px 3px rgba(0,0,0,.15);
 }
 .typing-indicator {
   font-size: 11px;
-  color: var(--green);
+  font-weight: 600;
+  color: #fff;
+  opacity: .9;
   animation: typing-fade 1.5s ease-in-out infinite;
 }
 @keyframes typing-fade {
@@ -70,7 +76,8 @@ body.chat-page {
   align-items: center;
   gap: 5px;
   font-size: 12px;
-  color: var(--green);
+  font-weight: 600;
+  color: #fff;
   flex-shrink: 0;
 }
 
@@ -81,6 +88,7 @@ body.chat-page {
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   padding: 16px 16px 8px;
+  background: var(--bg-page);
 }
 
 /* Custom scrollbar */
@@ -119,17 +127,23 @@ body.chat-page {
   word-break: break-word;
   white-space: pre-wrap;
 }
+
+/* ข้อความของเรา: gradient ม่วง-ชมพู ตัวอักษรขาว (คอนทราสต์สูง อ่านง่าย) */
 .msg.mine .bubble {
-  background: var(--grad);
-  color: #fff;
+  background: var(--grad-cta);
+  color: #ffffff;
+  font-weight: 500;
   border-bottom-right-radius: 4px;
-  box-shadow: 0 2px 12px rgba(255,46,147,.2);
+  box-shadow: 0 4px 14px rgba(196,108,232,.3);
 }
+
+/* ข้อความของคู่สนทนา: พื้นขาว ตัวอักษรเข้ม (คอนทราสต์สูง อ่านง่าย) */
 .msg.theirs .bubble {
-  background: var(--bg-card);
+  background: #ffffff;
   color: var(--text);
   border: 1px solid var(--border);
   border-bottom-left-radius: 4px;
+  box-shadow: 0 2px 8px rgba(80,70,160,.06);
 }
 
 .msg-meta {
@@ -144,11 +158,12 @@ body.chat-page {
   align-self: center;
   text-align: center;
   padding: 8px 20px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid var(--border);
+  background: #F3F0FC;
+  border: 1px solid #E2DBF7;
   border-radius: var(--radius-pill);
   font-size: 12px;
-  color: var(--text-muted);
+  font-weight: 600;
+  color: #6E5FAE;
   max-width: 90%;
   margin: 6px 0;
   animation: msg-in .2s ease;
@@ -161,15 +176,14 @@ body.chat-page {
   gap: 10px;
   padding: 12px 16px;
   border-top: 1px solid var(--border);
-  background: rgba(13,14,21,.95);
-  backdrop-filter: blur(8px);
+  background: #ffffff;
   flex-shrink: 0;
 }
 
 .msg-input {
   flex: 1;
   resize: none;
-  background: var(--bg-input);
+  background: #F8F9FD;
   border: 1.5px solid var(--border);
   border-radius: var(--radius-md);
   padding: 10px 14px;
@@ -183,24 +197,24 @@ body.chat-page {
   overflow-y: auto;
 }
 .msg-input::placeholder { color: var(--text-muted); }
-.msg-input:focus { outline: none; border-color: var(--pink); }
+.msg-input:focus { outline: none; border-color: var(--purple); }
 
 .send-btn {
   flex-shrink: 0;
   width: 48px; height: 48px;
   border-radius: var(--radius-md);
-  background: var(--grad);
+  background: var(--grad-cta);
   border: none;
   color: #fff;
   font-family: var(--font-th);
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
-  box-shadow: 0 0 16px rgba(255,46,147,.35);
+  box-shadow: 0 6px 16px rgba(196,108,232,.35);
   transition: transform var(--transition), box-shadow var(--transition);
   -webkit-tap-highlight-color: transparent;
 }
-.send-btn:hover  { transform: scale(1.06); box-shadow: 0 0 28px rgba(255,46,147,.55); }
+.send-btn:hover  { transform: scale(1.06); box-shadow: 0 8px 22px rgba(196,108,232,.5); }
 .send-btn:active { transform: scale(.94); }
 
 /* ------------------------------------------------ DISCONNECTED OVERLAY */
@@ -208,7 +222,7 @@ body.chat-page {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(13,14,21,.92);
+  background: rgba(43,45,66,.4);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -224,8 +238,7 @@ body.chat-page {
 }
 
 .disconnected-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: #ffffff;
   border-radius: var(--radius-lg);
   padding: 40px 32px;
   text-align: center;
@@ -235,7 +248,8 @@ body.chat-page {
   flex-direction: column;
   align-items: center;
   gap: 14px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.2);
 }
 .disconnected-icon  { font-size: 48px; }
-.disconnected-title { font-size: 18px; font-weight: 700; }
+.disconnected-title { font-size: 18px; font-weight: 700; color: var(--text); }
 .disconnected-sub   { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
