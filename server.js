@@ -18,9 +18,9 @@ app.use(attachSession);
 
 app.use(lineAuthRouter);
 
-// หน้าแรก: ส่ง index.html ตรง ๆ (ไม่บังคับ login — หน้านี้มี overlay ให้กด LINE Login เอง)
+// แก้ไขตำแหน่งทางเดินไฟล์หน้าแรกให้ตรงกับที่อยู่จริงนอกสุดบนเซิร์ฟเวอร์คลาวด์
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
