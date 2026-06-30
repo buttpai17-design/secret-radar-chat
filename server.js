@@ -19,6 +19,15 @@ app.use(attachSession);
 app.use(lineAuthRouter);
 app.use(express.static(path.join(__dirname, 'public')));
 
+// ดักหน้าแรกสุด (/) เพื่อส่งไฟล์ index.html ไปแสดงผลหน้าเว็บจริง
+app.get('/', (req, res) => {
+  // หากผู้ใช้ล็อกอินค้างไว้แล้ว ให้ข้ามไปหน้าห้องแชทสุ่มโดยอัตโนมัติ
+  if (req.appUserId) {
+    return res.redirect('/chat.html');
+  }
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // บอกฝั่ง frontend ว่า login อยู่หรือยัง (ใช้ตัดสินใจว่าจะโชว์ปุ่ม LINE Login หรือเข้าหน้าหลักเลย)
 app.get('/api/me', (req, res) => {
   if (!req.appUserId) {
