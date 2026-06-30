@@ -18,12 +18,12 @@ app.use(attachSession);
 
 app.use(lineAuthRouter);
 
-// สั่งให้ถอยหลังออกไปนอกโฟลเดอร์ 1 ชั้น (.. คือการถอยหลัง) เพื่อเข้าหาโฟลเดอร์ public ด้านนอกสุดที่ถูกต้องครับ
+// หน้าแรก: ส่ง index.html ตรง ๆ (ไม่บังคับ login — หน้านี้มี overlay ให้กด LINE Login เอง)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // บอกฝั่ง frontend ว่า login อยู่หรือยัง (ใช้ตัดสินใจว่าจะโชว์ปุ่ม LINE Login หรือเข้าหน้าหลักเลย)
 app.get('/api/me', (req, res) => {
@@ -37,7 +37,7 @@ app.get('/chat.html', (req, res) => {
   if (!req.appUserId) {
     return res.redirect('/auth/line');
   }
-  res.sendFile(path.join(__dirname, '..', 'public', 'chat.html'));
+  res.sendFile(path.join(__dirname, 'public', 'chat.html'));
 });
 
 registerChatSocket(io);
