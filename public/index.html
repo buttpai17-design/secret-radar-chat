@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>แชทลับ — Secret Chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+
+  <div class="phone-frame">
+
+    <!-- Header -->
+    <header class="app-header">
+      <h1 class="app-title">แชทลับนิรนาม</h1>
+    </header>
+
+    <!-- LINE login pill -->
+    <div class="line-status-pill" id="lineStatusPill">
+      <span class="line-badge">LINE</span>
+      <span id="lineStatusText">เข้าสู่ระบบด้วย LINE แล้ว</span>
+    </div>
+
+    <!-- Main -->
+    <main class="hero">
+
+      <!-- Radar / Matching visual -->
+      <div class="radar-wrap" id="radarWrap">
+
+        <!-- floating avatar bubbles -->
+        <div class="avatar-bubble pos-tl">🦊</div>
+        <div class="avatar-bubble pos-tr">🦉</div>
+        <div class="avatar-bubble pos-r">🐰</div>
+        <div class="avatar-bubble pos-l">🦦</div>
+        <div class="avatar-bubble pos-bl">🦊</div>
+        <div class="avatar-bubble pos-br">⭐</div>
+
+        <div class="radar-disc">
+          <div class="radar-ring-line ring1"></div>
+          <div class="radar-ring-line ring2"></div>
+          <div class="radar-sweep"></div>
+          <button class="radar-center-btn" id="mainBtn" onclick="handleMainButton()">
+            <span class="radar-icon">💬</span>
+          </button>
+        </div>
+      </div>
+
+      <p class="matching-status" id="matchingStatus">
+        <span id="matchingStatusText">กำลังจับคู่</span><span class="dots">...</span>
+      </p>
+
+      <!-- Searching detail (คิวจริง) -->
+      <p class="queue-text hidden" id="queueText"></p>
+      <button class="cancel-link hidden" id="cancelBtn" onclick="cancelSearch()">ยกเลิก</button>
+
+      <!-- Gender Filters -->
+      <div class="filters" id="filtersBlock">
+        <p class="filter-title">ตัวกรองเพศ</p>
+        <div class="seg-ctrl" id="genderSelf">
+          <button class="seg active" data-val="male">♂ ชาย</button>
+          <button class="seg" data-val="female">♀ หญิง</button>
+          <button class="seg" data-val="any">⚥ ทั้งหมด</button>
+        </div>
+      </div>
+
+      <!-- Main CTA -->
+      <button class="cta-btn" id="ctaBtn" onclick="handleMainButton()">
+        <span id="ctaLabel">หาเพื่อนใหม่</span>
+      </button>
+
+      <!-- Nickname -->
+      <button class="nickname-edit-link" onclick="showToast('เปลี่ยนชื่อเล่นเร็วๆ นี้')">
+        เปลี่ยนชื่อเล่น
+      </button>
+      <p class="nickname-display" id="nicknameDisplay">ผู้มาเยือนราตรี #4772</p>
+
+      <!-- Divider -->
+      <div class="divider"><span>หรือ</span></div>
+
+      <!-- Private room -->
+      <div class="private-room-block">
+        <div class="private-room-row">
+          <input class="code-input" id="codeInput" type="text" inputmode="numeric"
+            maxlength="6" placeholder="รหัส 6 หลัก" />
+          <button class="btn-outline" onclick="joinPrivateRoom()">เข้าห้อง</button>
+        </div>
+        <button class="btn-text" id="createRoomBtn" onclick="createPrivateRoom()">
+          + สร้างห้องแชทลับและรับรหัส
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-bar" id="statsBar">
+        <span class="online-dot"></span>
+        <span id="onlineCount">กำลังโหลด...</span>
+        <span class="stats-sep">·</span>
+        <span id="matchesToday">แมตช์วันนี้: —</span>
+      </div>
+
+    </main>
+
+    <!-- LINE Login overlay (แสดงก่อนถ้ายังไม่ login) -->
+    <div class="login-overlay hidden" id="loginOverlay">
+      <div class="login-card">
+        <div class="login-logo">💬</div>
+        <h2 class="login-title">แชทลับนิรนาม</h2>
+        <p class="login-sub">แชทลับ จับคู่สุ่ม ไม่มีตัวตน<br>เข้าสู่ระบบง่าย ๆ ด้วย LINE</p>
+        <a href="/auth/line" class="btn-line">
+          <img src="/img/line-icon.svg" width="22" height="22" alt="LINE" />
+          เข้าสู่ระบบด้วย LINE
+        </a>
+        <p class="login-privacy">เราขอสิทธิ์เข้าถึงเพียง LINE User ID เท่านั้น ไม่เก็บชื่อจริง รูปภาพ หรือเบอร์โทรศัพท์</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

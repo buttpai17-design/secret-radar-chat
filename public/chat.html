@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secret Chat — ห้องแชท</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/chat.css" />
+</head>
+<body class="chat-page">
+
+  <!-- Chat header -->
+  <header class="chat-header">
+    <button class="back-btn" onclick="leaveRoom()">← ออก</button>
+    <div class="chat-header-info">
+      <span class="partner-name" id="partnerName">—</span>
+      <span class="typing-indicator hidden" id="typingIndicator">กำลังพิมพ์...</span>
+    </div>
+    <div class="chat-header-status">
+      <span class="online-dot small"></span>
+      <span id="headerOnline">—</span>
+    </div>
+  </header>
+
+  <!-- Messages area -->
+  <div class="messages-wrap" id="messagesWrap">
+    <div class="messages" id="messages">
+      <div class="system-msg" id="systemMsg">รอการเชื่อมต่อ...</div>
+    </div>
+  </div>
+
+  <!-- Input bar -->
+  <div class="input-bar" id="inputBar">
+    <textarea class="msg-input" id="msgInput"
+      placeholder="พิมพ์ข้อความ..."
+      rows="1"
+      maxlength="2000"></textarea>
+    <button class="send-btn" id="sendBtn" onclick="sendMessage()">ส่ง</button>
+  </div>
+
+  <!-- Disconnected overlay -->
+  <div class="disconnected-overlay hidden" id="disconnectedOverlay">
+    <div class="disconnected-card">
+      <div class="disconnected-icon">😢</div>
+      <p class="disconnected-title">คู่สนทนาออกไปแล้ว</p>
+      <p class="disconnected-sub">การสนทนานี้จบลงแล้ว ข้อความจะไม่ถูกบันทึกไว้ที่ใด</p>
+      <a href="/" class="btn-primary">กลับไปหน้าหลัก</a>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/chat.js"></script>
+</body>
+</html>
