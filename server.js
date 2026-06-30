@@ -17,6 +17,12 @@ app.use(express.json());
 app.use(attachSession);
 
 app.use(lineAuthRouter);
+
+// หน้าแรก: ส่ง index.html ตรง ๆ (ไม่บังคับ login — หน้านี้มี overlay ให้กด LINE Login เอง)
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // บอกฝั่ง frontend ว่า login อยู่หรือยัง (ใช้ตัดสินใจว่าจะโชว์ปุ่ม LINE Login หรือเข้าหน้าหลักเลย)
