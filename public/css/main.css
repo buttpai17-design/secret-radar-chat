@@ -204,9 +204,9 @@ body {
 
 /* ------------------------------------------------ MATCHING STATUS */
 .matching-status {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-dim);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
   display: flex;
   align-items: center;
   gap: 3px;
@@ -219,8 +219,9 @@ body {
 }
 
 .queue-text {
-  font-size: 13px;
-  color: var(--text-dim);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #6E708E;
   text-align: center;
 }
 .cancel-link {
@@ -244,8 +245,8 @@ body {
 }
 .filter-title {
   font-size: 13px;
-  color: var(--text-dim);
-  font-weight: 600;
+  color: #6E708E;
+  font-weight: 700;
   align-self: flex-start;
 }
 .seg-ctrl {
@@ -310,9 +311,9 @@ body {
 .nickname-edit-link:hover { color: var(--purple); }
 
 .nickname-display {
-  font-size: 12.5px;
-  color: var(--text-muted);
-  font-weight: 500;
+  font-size: 13px;
+  color: #6E708E;
+  font-weight: 600;
 }
 
 /* ------------------------------------------------ DIVIDER */
@@ -408,11 +409,12 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11.5px;
-  color: var(--text-muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #6E708E;
   margin-top: 2px;
 }
-.stats-sep { color: var(--border); }
+.stats-sep { color: var(--text-muted); }
 
 .online-dot {
   width: 7px; height: 7px;
