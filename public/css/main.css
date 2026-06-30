@@ -61,6 +61,7 @@ body {
   box-shadow: 0 24px 60px rgba(80, 70, 160, .18);
   display: flex;
   flex-direction: column;
+  align-self: flex-start;   /* กันไม่ให้ body (flex) บีบความสูงการ์ดให้เท่าจอ — ปล่อยให้สูงตามเนื้อหาจริง */
 }
 
 /* ------------------------------------------------ HEADER */
