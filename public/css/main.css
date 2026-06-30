@@ -62,6 +62,7 @@ body {
   display: flex;
   flex-direction: column;
   align-self: flex-start;   /* กันไม่ให้ body (flex) บีบความสูงการ์ดให้เท่าจอ — ปล่อยให้สูงตามเนื้อหาจริง */
+  overflow-x: hidden;       /* ตัดเฉพาะแนวนอนที่ล้นนิดหน่อย ไม่กระทบแนวตั้ง */
 }
 
 /* ------------------------------------------------ HEADER */
@@ -349,6 +350,7 @@ body {
 }
 .code-input {
   flex: 1;
+  min-width: 0;
   padding: 10px 16px;
   background: #F8F9FD;
   border: 1.5px solid var(--border);
